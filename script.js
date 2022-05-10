@@ -2,13 +2,14 @@ let url = 'http://localhost:3030';
 let movieForm = document.getElementById('add-movie-form');
 let registerForm = document.querySelector('#register-form');
 let registerSection = document.querySelector('.register-section');
+let addMovieSection = document.querySelector('.add-movie-section');
 
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     let data = new FormData(e.currentTarget);
    
-    // e.currentTarget.reset();
+    e.currentTarget.reset();
 
     fetch(`${url}/users/register`, {
         method: 'POST',
@@ -25,6 +26,7 @@ registerForm.addEventListener('submit', (e) => {
         saveToken(data.accessToken)
         console.log(data);
         registerSection.classList.add('hide')
+        addMovieSection.classList.remove('hide')
     })
     .catch(err => {
         console.error(err);
